@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+int ReadInput();
+void AddNode(int);
+struct node{
+int data;
+struct node *next;
+};struct node *start=NULL,*p;
+int main(){
+int n,m;
+struct node *q;
+for(int i=0;i<5;i++)
+{
+n=ReadInput();
+AddNode(n);
+}
+p=start;
+while(p!=NULL)
+{q=p->next;
+while(q!=NULL)
+{
+if(p->data>q->data)
+{m=p->data;
+p->data=q->data;
+q->data=m;
+}
+q=q->next;
+}
+p=p->next;
+}p=start;
+while(p!=NULL)
+{
+printf("%d",p->data);
+p=p->next;
+}
+}
+
+
+void AddNode(int y)
+{
+p=(struct node*)malloc(sizeof(struct node));
+p->data=y;
+if(start==NULL)
+{
+p->next=NULL;
+}else
+{
+p->next=start;
+}
+start=p;
+}
+
+int ReadInput()
+{int x;
+printf("enter number: ");
+scanf("%d",&x);
+return x;
+}
